@@ -1,0 +1,210 @@
+/* ============================================================
+   Hamilin Hub — design tokens
+   Each [data-palette] block defines the full accent set for one
+   direction. Guide is pinned to Michelin red (or a brightened
+   variant on dark grounds) in every direction on purpose — see
+   README for why. Secondary tokens (raised/sunken surfaces,
+   soft ink, hairlines) are derived from paper/ink so they never
+   need restating per palette.
+   ============================================================ */
+
+html { color-scheme: light dark; }
+
+[data-palette="enamel"] {
+  --paper: #E8E6DC; --ink: #1B1F23;
+  --line-hub: #8E6C2E; --line-cards: #1F6F6B; --line-star: #A9700F;
+  --line-guide: #BA0B2F; --line-lacmane: #6B3B5C;
+}
+[data-palette="ordnance-survey"] {
+  --paper: #F1ECDD; --ink: #2B2A25;
+  --line-hub: #4A3B2A; --line-cards: #2F6B3C; --line-star: #2C6E8E;
+  --line-guide: #BA0B2F; --line-lacmane: #6E4F79;
+}
+[data-palette="night-transit"] {
+  --paper: #14171C; --ink: #ECEEF2;
+  --line-hub: #D7A54B; --line-cards: #35B7AE; --line-star: #7C8CF8;
+  --line-guide: #E2536B; --line-lacmane: #C463B0;
+}
+[data-palette="blueprint"] {
+  --paper: #1B3A5C; --ink: #EAF1F7;
+  --line-hub: #F5EFE0; --line-cards: #8FD1E8; --line-star: #E8A33D;
+  --line-guide: #E2536B; --line-lacmane: #B9A6D9;
+}
+[data-palette="chocolate-truffle"] {
+  --paper: #FDFBD4; --ink: #38240D;
+  --line-hub: #713600; --line-cards: #5B7A3D; --line-star: #C05800;
+  --line-guide: #BA0B2F; --line-lacmane: #4A2545;
+}
+[data-palette="pistachio-gelato"] {
+  --paper: #F4F1E1; --ink: #2B2A1E;
+  --line-hub: #6F7F4C; --line-cards: #4E8C8A; --line-star: #C9A227;
+  --line-guide: #BA0B2F; --line-lacmane: #7A5D82;
+}
+[data-palette="hazelnut-gelato"] {
+  --paper: #F5E6D3; --ink: #3B2417;
+  --line-hub: #8B5A2B; --line-cards: #4A6741; --line-star: #D4922B;
+  --line-guide: #BA0B2F; --line-lacmane: #432145;
+}
+[data-palette="pistachio-hazelnut"] {
+  --paper: #F5EDD8; --ink: #332A1C;
+  --line-hub: #6F7F4C; --line-cards: #8B5A2B; --line-star: #C9A227;
+  --line-guide: #BA0B2F; --line-lacmane: #7A5D82;
+}
+
+:root {
+  --paper-raised: color-mix(in srgb, var(--paper) 100%, white 22%);
+  --paper-sunken: color-mix(in srgb, var(--paper) 100%, black 10%);
+  --ink-soft: color-mix(in srgb, var(--ink) 62%, var(--paper) 38%);
+  --hairline: color-mix(in srgb, var(--ink) 16%, transparent);
+}
+
+* { box-sizing: border-box; }
+
+html, body { margin: 0; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: Georgia, "Iowan Old Style", "Times New Roman", serif;
+  line-height: 1.6;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.display {
+  font-family: "Bahnschrift", "DIN Alternate", "Arial Narrow", sans-serif;
+  font-variation-settings: "wght" 700, "wdth" 85;
+  letter-spacing: 0.01em;
+}
+.mono {
+  font-family: Consolas, "Cascadia Code", "SF Mono", ui-monospace, monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+.page { max-width: 900px; margin: 0 auto; padding: 0 clamp(1.25rem, 4vw, 3rem) 4rem; }
+
+/* ---------- header ---------- */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.75rem 0 1.5rem;
+  border-bottom: 1px solid var(--hairline);
+  flex-wrap: wrap;
+}
+.wordmark {
+  font-size: 1.15rem;
+  letter-spacing: 0.06em;
+}
+
+.palette-switcher { display: flex; align-items: center; gap: 0.5rem; }
+.palette-switcher label {
+  font-family: Consolas, ui-monospace, monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.palette-switcher select {
+  font-family: Consolas, ui-monospace, monospace;
+  font-size: 0.75rem;
+  color: var(--ink);
+  background: var(--paper-raised);
+  border: 1px solid var(--hairline);
+  border-radius: 3px;
+  padding: 0.4rem 0.6rem;
+  cursor: pointer;
+}
+.palette-switcher select:focus-visible {
+  outline: 2px solid var(--line-hub);
+  outline-offset: 2px;
+}
+
+/* ---------- hero ---------- */
+.hero { padding: 3rem 0 2.5rem; max-width: 34rem; }
+.hero .eyebrow {
+  font-family: Consolas, ui-monospace, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin: 0 0 0.9rem;
+}
+.hero h1 {
+  font-size: clamp(1.9rem, 5vw, 2.9rem);
+  line-height: 1.12;
+  margin: 0;
+  text-wrap: balance;
+}
+
+/* ---------- tiles ---------- */
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  padding-bottom: 3rem;
+}
+@media (max-width: 560px) {
+  .tiles { grid-template-columns: 1fr; }
+}
+
+.tile {
+  display: block;
+  position: relative;
+  border: 1px solid var(--hairline);
+  background: var(--paper-raised);
+  border-left: 4px solid var(--tile-color, var(--ink-soft));
+  padding: 1.1rem 1.2rem 1.2rem;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.16s ease, box-shadow 0.16s ease;
+}
+a.tile:hover, a.tile:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px -14px var(--hairline);
+}
+a.tile:focus-visible { outline: 2px solid var(--tile-color, var(--ink)); outline-offset: 2px; }
+
+.tile[data-line="cards"]  { --tile-color: var(--line-cards); }
+.tile[data-line="star"]   { --tile-color: var(--line-star); }
+.tile[data-line="guide"]  { --tile-color: var(--line-guide); }
+.tile[data-line="lacmane"]{ --tile-color: var(--line-lacmane); }
+
+.tile-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
+}
+.tile-name {
+  font-family: "Bahnschrift", sans-serif;
+  font-variation-settings: "wght" 700, "wdth" 88;
+  font-size: 1.05rem;
+}
+.tile-arrow {
+  font-family: Consolas, monospace;
+  color: var(--tile-color, var(--ink-soft));
+}
+.tile-status {
+  font-family: Consolas, monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.tile-desc {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  max-width: 30ch;
+}
+.tile--soon { cursor: default; }
+
+/* ---------- footer ---------- */
+footer {
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--hairline);
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+}
