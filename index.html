@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en" data-palette="enamel">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hamilin</title>
+<meta name="description" content="Hamilin — the hub connecting Cards, Star, Guide, and more.">
+<link rel="stylesheet" href="styles.css">
+<script>
+(function () {
+  var PALETTES = ["enamel","ordnance-survey","night-transit","blueprint","chocolate-truffle","pistachio-gelato","hazelnut-gelato","pistachio-hazelnut"];
+  var saved = localStorage.getItem("hamilin-palette");
+  var initial = (saved && PALETTES.indexOf(saved) !== -1)
+    ? saved
+    : (window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches ? "blueprint" : "enamel");
+  document.documentElement.setAttribute("data-palette", initial);
+})();
+</script>
+</head>
+<body>
+<div class="page">
+
+  <header class="topbar">
+    <div class="wordmark display">HAMILIN</div>
+    <div class="palette-switcher">
+      <label for="palette-select">Palette</label>
+      <select id="palette-select" aria-label="Colour palette">
+        <option value="enamel">Enamel Signage</option>
+        <option value="blueprint">Blueprint</option>
+        <option value="chocolate-truffle">Chocolate Truffle</option>
+        <option value="hazelnut-gelato">Hazelnut Gelato</option>
+        <option value="pistachio-gelato">Pistachio Gelato</option>
+        <option value="pistachio-hazelnut">Pistachio &amp; Hazelnut</option>
+        <option value="ordnance-survey">Ordnance Survey</option>
+        <option value="night-transit">Night Transit</option>
+      </select>
+    </div>
+  </header>
+
+  <section class="hero">
+    <p class="eyebrow">Hamilin</p>
+    <h1 class="display"><!-- TODO(Hamish): headline --> placeholder text</h1>
+  </section>
+
+  <section class="tiles">
+    <div class="tile tile--soon" data-line="cards" aria-disabled="true">
+      <div class="tile-head">
+        <span class="tile-name">Cards</span>
+        <span class="tile-status">Soon</span>
+      </div>
+      <span class="tile-desc"><!-- TODO(Hamish): description --></span>
+    </div>
+
+    <a class="tile" data-line="star" href="https://hamilinstar.com">
+      <div class="tile-head">
+        <span class="tile-name">Star</span>
+        <span class="tile-arrow">→</span>
+      </div>
+      <span class="tile-desc"><!-- TODO(Hamish): description --></span>
+    </a>
+
+    <a class="tile" data-line="guide" href="https://hamilinguide.com">
+      <div class="tile-head">
+        <span class="tile-name">Guide</span>
+        <span class="tile-arrow">→</span>
+      </div>
+      <span class="tile-desc"><!-- TODO(Hamish): description --></span>
+    </a>
+
+    <div class="tile tile--soon" data-line="lacmane" aria-disabled="true">
+      <div class="tile-head">
+        <span class="tile-name">Lacmane</span>
+        <span class="tile-status">Soon</span>
+      </div>
+      <span class="tile-desc"><!-- TODO(Hamish): description --></span>
+    </div>
+  </section>
+
+  <footer>
+    <p class="mono">© 2026 Hamish Lacmane. All rights reserved.</p>
+  </footer>
+
+</div>
+<script src="palette.js"></script>
+</body>
+</html>
